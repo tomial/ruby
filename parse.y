@@ -9225,13 +9225,13 @@ parser_yylex(struct parser_params *p)
     int token_seen = p->token_seen;
 
     if (p->lex.strterm) {
-	if (p->lex.strterm->flags & STRTERM_HEREDOC) {
-	    return here_document(p, &p->lex.strterm->u.heredoc);
-	}
-	else {
-	    token_flush(p);
-	    return parse_string(p, &p->lex.strterm->u.literal);
-	}
+      if (p->lex.strterm->flags & STRTERM_HEREDOC) {
+        return here_document(p, &p->lex.strterm->u.heredoc);
+      }
+      else {
+        token_flush(p);
+        return parse_string(p, &p->lex.strterm->u.literal);
+      }
     }
     cmd_state = p->command_start;
     p->command_start = FALSE;
